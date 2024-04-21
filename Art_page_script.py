@@ -13,7 +13,9 @@ options.add_argument("--enable-javascript")  # Enable JavaScript
 driver = webdriver.Chrome(options=options)
 
 # driver = webdriver.Chrome()
+driver.maximize_window()
 driver.get("https://dreaminterpreter.ai/")
+driver.minimize_window()
 exit_loop = False
 while not exit_loop:
     html_content = driver.page_source
@@ -55,7 +57,7 @@ while not exit_loop:
     input_tag = driver.find_element(By.XPATH, '//*[@id="root"]/div/div[3]/div/div[2]/div/input')
     input_tag_value = input_tag.get_attribute('value')
 
-    new_value = "04/18/2024"
+    new_value = "04/21/2024"
     # Clear the input field by sending backspace keystrokes
     input_tag.send_keys(Keys.CONTROL + "a")  # Select all text
     input_tag.send_keys(Keys.BACKSPACE)  # Delete selected text
@@ -141,6 +143,7 @@ while not exit_loop:
                 date_elem = li.find('div', class_='Art_date__JKl3V')
                 date = date_elem.text.strip() if date_elem else "Date not available"
 
+
                 title_elem = li.find('div', class_='Art_dream__NXDhj')
                 title = title_elem.text.strip() if title_elem else "Title not available"
 
@@ -155,8 +158,8 @@ while not exit_loop:
                 file.write("\n")
                 file.write("Title: {}\n".format(title))
                 file.write("\n")
-                file.write("Image Source: {}\n".format(img_src)) # if not required then remove it bcz i have created img url separate file
-                file.write("\n")
+                # file.write("Image Source: {}\n".format(img_src)) # if not required then remove it bcz i have created img url separate file
+                # file.write("\n")
                 file.write("Full Post: {}\n".format(full_Post_href))
                 file.write("\n")
                 file.write("User Input: {}\n".format(u_input))
