@@ -1,0 +1,8 @@
+# Byte-compiled files
+*.pyc
+
+# Environment directory
+venv/
+
+# PyCharm IDE settings
+.idea/
