@@ -1,68 +1,66 @@
-1: See latest dreams by region:"
-"2: United States"
-"3: Brazil"
-"4: Russia"
-"5: Great Britain"
-"6: China"
-"7: Spain"
-"8: Canada"
-"9: Germany"
-"10: Mexico"
-"11: Colombia"
-"12: Pakistan"
-"13: Malaysia"
-"14: Italy"
-"15: Australia"
-"16: Romania"
-"17: South Africa"
-"18: France"
-"19: Chile"
-"20: Taiwan"
-"21: Philippines"
-"22: Turkey"
-"23: Bangladesh"
-"24: Albania"
-"25: United Arab Emirates"
-"26: Venezuela"
-"27: Ukraine"
-"28: Nigeria"
-"29: Singapore"
-"30: Netherlands"
-"31: Thailand"
-"32: Kenya"
-"33: Indonesia"
-"34: Egypt"
-"35: Peru"
-"36: Poland"
-"37: Saudi Arabia"
-"38: Kazakhstan"
-"39: Israel"
-"40: New Zealand"
-"41: Ecuador"
-"42: Hong Kong"
-"43: Portugal"
-"44: Morocco"
-"45: South Korea"
-"46: Sri Lanka"
-"47: Belgium"
-"48: Sweden"
-"49: Greece"
-"50: Norway"
-"51: Ireland"
-"52: Belarus"
-"53: Oman"
-"54: Uzbekistan"
-"55: India"
-"56: Bulgaria"
-"57: Uganda"
-"58: Japan"
-"59: Georgia"
-"60: El Salvador"
-"61: Austria"
-"62: Algeria"
-"63: Switzerland"
-"64: Uruguay"
-"65: Bolivia"
-"66: Kuwait"
-"67: Qatar"
-"
+1: United States - https://dreaminterpreter.ai//region/US
+2: Brazil - https://dreaminterpreter.ai//region/BR
+3: Russia - https://dreaminterpreter.ai//region/RU
+4: Great Britain - https://dreaminterpreter.ai//region/GB
+5: China - https://dreaminterpreter.ai//region/CN
+6: Spain - https://dreaminterpreter.ai//region/ES
+7: Canada - https://dreaminterpreter.ai//region/CA
+8: Germany - https://dreaminterpreter.ai//region/DE
+9: Mexico - https://dreaminterpreter.ai//region/MX
+10: Colombia - https://dreaminterpreter.ai//region/CO
+11: Pakistan - https://dreaminterpreter.ai//region/PK
+12: Malaysia - https://dreaminterpreter.ai//region/MY
+13: Italy - https://dreaminterpreter.ai//region/IT
+14: Australia - https://dreaminterpreter.ai//region/AU
+15: Romania - https://dreaminterpreter.ai//region/RO
+16: South Africa - https://dreaminterpreter.ai//region/ZA
+17: France - https://dreaminterpreter.ai//region/FR
+18: Chile - https://dreaminterpreter.ai//region/CL
+19: Taiwan - https://dreaminterpreter.ai//region/TW
+20: Philippines - https://dreaminterpreter.ai//region/PH
+21: Turkey - https://dreaminterpreter.ai//region/TR
+22: Bangladesh - https://dreaminterpreter.ai//region/BD
+23: Albania - https://dreaminterpreter.ai//region/AL
+24: United Arab Emirates - https://dreaminterpreter.ai//region/AE
+25: Venezuela - https://dreaminterpreter.ai//region/VE
+26: Ukraine - https://dreaminterpreter.ai//region/UA
+27: Nigeria - https://dreaminterpreter.ai//region/NG
+28: Singapore - https://dreaminterpreter.ai//region/SG
+29: Netherlands - https://dreaminterpreter.ai//region/NL
+30: Thailand - https://dreaminterpreter.ai//region/TH
+31: Kenya - https://dreaminterpreter.ai//region/KE
+32: Indonesia - https://dreaminterpreter.ai//region/ID
+33: Egypt - https://dreaminterpreter.ai//region/EG
+34: Peru - https://dreaminterpreter.ai//region/PE
+35: Poland - https://dreaminterpreter.ai//region/PL
+36: Saudi Arabia - https://dreaminterpreter.ai//region/SA
+37: Kazakhstan - https://dreaminterpreter.ai//region/KZ
+38: Israel - https://dreaminterpreter.ai//region/IL
+39: New Zealand - https://dreaminterpreter.ai//region/NZ
+40: Ecuador - https://dreaminterpreter.ai//region/EC
+41: Hong Kong - https://dreaminterpreter.ai//region/HK
+42: Portugal - https://dreaminterpreter.ai//region/PT
+43: Morocco - https://dreaminterpreter.ai//region/MA
+44: South Korea - https://dreaminterpreter.ai//region/KR
+45: Sri Lanka - https://dreaminterpreter.ai//region/LK
+46: Belgium - https://dreaminterpreter.ai//region/BE
+47: Sweden - https://dreaminterpreter.ai//region/SE
+48: Greece - https://dreaminterpreter.ai//region/GR
+49: Norway - https://dreaminterpreter.ai//region/NO
+50: Ireland - https://dreaminterpreter.ai//region/IE
+51: Belarus - https://dreaminterpreter.ai//region/BY
+52: Oman - https://dreaminterpreter.ai//region/OM
+53: Uzbekistan - https://dreaminterpreter.ai//region/UZ
+54: India - https://dreaminterpreter.ai//region/IN
+55: Bulgaria - https://dreaminterpreter.ai//region/BG
+56: Uganda - https://dreaminterpreter.ai//region/UG
+57: Japan - https://dreaminterpreter.ai//region/JP
+58: Georgia - https://dreaminterpreter.ai//region/GE
+59: El Salvador - https://dreaminterpreter.ai//region/SV
+60: Austria - https://dreaminterpreter.ai//region/AT
+61: Algeria - https://dreaminterpreter.ai//region/DZ
+62: Switzerland - https://dreaminterpreter.ai//region/CH
+63: Uruguay - https://dreaminterpreter.ai//region/UY
+64: Bolivia - https://dreaminterpreter.ai//region/BO
+65: Kuwait - https://dreaminterpreter.ai//region/KW
+66: Qatar - https://dreaminterpreter.ai//region/QA

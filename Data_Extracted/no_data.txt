@@ -1,0 +1,17 @@
+Country: Pakistan, URL: https://dreaminterpreter.ai//region/PK
+Country: Malaysia, URL: https://dreaminterpreter.ai//region/MY
+Country: Romania, URL: https://dreaminterpreter.ai//region/RO
+Country: South Africa, URL: https://dreaminterpreter.ai//region/ZA
+Country: Chile, URL: https://dreaminterpreter.ai//region/CL
+Country: Taiwan, URL: https://dreaminterpreter.ai//region/TW
+Country: Philippines, URL: https://dreaminterpreter.ai//region/PH
+Country: Albania, URL: https://dreaminterpreter.ai//region/AL
+Country: New Zealand, URL: https://dreaminterpreter.ai//region/NZ
+Country: Portugal, URL: https://dreaminterpreter.ai//region/PT
+Country: Belarus, URL: https://dreaminterpreter.ai//region/BY
+Country: Uzbekistan, URL: https://dreaminterpreter.ai//region/UZ
+Country: India, URL: https://dreaminterpreter.ai//region/IN
+Country: El Salvador, URL: https://dreaminterpreter.ai//region/SV
+Country: Austria, URL: https://dreaminterpreter.ai//region/AT
+Country: Algeria, URL: https://dreaminterpreter.ai//region/DZ
+Country: Switzerland, URL: https://dreaminterpreter.ai//region/CH
