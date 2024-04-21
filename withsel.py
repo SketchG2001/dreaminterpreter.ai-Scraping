@@ -1,3 +1,5 @@
+import sys
+
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -61,8 +63,8 @@ while not exit_loop:
     input_tag.send_keys(Keys.ENTER)
 
     # Retrieve the updated value
-    updated_input_tag_value = input_tag.get_attribute('value')
-    print(updated_input_tag_value)
+    target_date = input_tag.get_attribute('value')
+    # print(target_date)
 
     specific_element = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div[3]/div/div[3]')))
     html_content2 = driver.page_source
@@ -80,85 +82,88 @@ while not exit_loop:
     # it ignores the first 5 li's which is in the navbar
     li_elements_to_process = li_elements[5:]
     # print(li_elements)
-    with open("Art_data.txt", "w", encoding="utf-8") as file:
-        base_url = "https://dreaminterpreter.ai/"
-        count = 1
-        for li in li_elements_to_process:
-            anchor_tag = li.find('a')
-            a_href = anchor_tag.get('href')
+    target_date_file_safe = target_date.replace("/", "-")
 
-            if anchor_tag:
+    with open(f"_{target_date_file_safe}_Art_data.txt", "w", encoding="utf-8") as file:
+        with open(f"_{target_date_file_safe}_img_src.txt", "w", encoding="utf-8") as img_file:
+            base_url = "https://dreaminterpreter.ai/"
+            count = 1
+            for li in li_elements_to_process:
+                anchor_tag = li.find('a')
                 a_href = anchor_tag.get('href')
-                full_Post_href = base_url + a_href
-                driver.execute_script("document.documentElement.style.setProperty('visibility', 'visible', 'important');")
 
-                # Navigate to the full Post href
-                driver.get(full_Post_href)
-                wait = WebDriverWait(driver, 50)
-                # Wait for the specific element to be present, indicating that the page has fully loaded
-                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "Interpreter_dream_card_container__NWBLD")))
+                if anchor_tag:
+                    a_href = anchor_tag.get('href')
+                    full_Post_href = base_url + a_href
+                    driver.execute_script("document.documentElement.style.setProperty('visibility', 'visible', 'important');")
 
-                # Now get the page source and print it
-                full_post = driver.page_source
-                full_post_soup = BeautifulSoup(full_post, 'html.parser')
-                # print(full_post_soup.prettify())
+                    # Navigate to the full Post href
+                    driver.get(full_Post_href)
+                    wait = WebDriverWait(driver, 50)
+                    # Wait for the specific element to be present, indicating that the page has fully loaded
+                    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "Interpreter_dream_card_container__NWBLD")))
 
-                all_para_div = full_post_soup.find('div', class_='Interpreter_dream_card_container__NWBLD')
-                if all_para_div:
-
-                    # Find the first paragraph with class 'Interpreter_dream__Nd9f0'
-                    first_para = all_para_div.find('p', class_='Interpreter_dream__Nd9f0')
-                    if first_para:
-                        # print(f"User Input {count}: {first_para.text.strip()}")
-                        u_input = f"{count}: {first_para.text.strip()}"
-                        print(u_input)
-                    else:
-                        print("User input not found.")
-
-                    # Find the second paragraph with class 'Interpreter_interpretation__B-MVR'
-                    second_para = all_para_div.find('p', class_='Interpreter_interpretation__B-MVR')
-                    if second_para:
-                        # print(f"\nInterpreter Response {count}: {second_para.text.strip()}")
-                        Response = f"{count}: {second_para.text.strip()}"
-                        print(Response)
-                        print()
-                        count += 1
-                    else:
-                        print("Response not found.")
+                    # Now get the page source and print it
+                    full_post = driver.page_source
+                    full_post_soup = BeautifulSoup(full_post, 'html.parser')
 
 
+                    all_para_div = full_post_soup.find('div', class_='Interpreter_dream_card_container__NWBLD')
+                    if all_para_div:
+
+                        # Find the first paragraph with class 'Interpreter_dream__Nd9f0'
+                        first_para = all_para_div.find('p', class_='Interpreter_dream__Nd9f0')
+                        if first_para:
+                            # print(f"User Input {count}: {first_para.text.strip()}")
+                            u_input = f"{count}: {first_para.text.strip()}"
+                            # print(u_input)
+                        else:
+                            print("User input not found.")
+
+                        # Find the second paragraph with class 'Interpreter_interpretation__B-MVR'
+                        second_para = all_para_div.find('p', class_='Interpreter_interpretation__B-MVR')
+                        if second_para:
+                            # print(f"\nInterpreter Response {count}: {second_para.text.strip()}")
+                            Response = f"{count}: {second_para.text.strip()}"
+                            # print(Response)
+                            # print()
+                            count += 1
+                        else:
+                            print("Response not found.")
+
+
+
+                    # Wait for document.readyState to be 'complete'
+                    wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+
+
+                date_elem = li.find('div', class_='Art_date__JKl3V')
+                date = date_elem.text.strip() if date_elem else "Date not available"
+
+                title_elem = li.find('div', class_='Art_dream__NXDhj')
+                title = title_elem.text.strip() if title_elem else "Title not available"
+
+                img_elem = li.find('img')
+                img_src = img_elem['src'] if img_elem else "Image source not available"
+                img_file.write(img_src + "\n")
 
                 # Wait for document.readyState to be 'complete'
                 wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
 
-
-
-            date_elem = li.find('div', class_='Art_date__JKl3V')
-            date = date_elem.text.strip() if date_elem else "Date not available"
-            # print(date)
-            title_elem = li.find('div', class_='Art_dream__NXDhj')
-            title = title_elem.text.strip() if title_elem else "Title not available"
-    #         print(title)
-            img_elem = li.find('img')
-            img_src = img_elem['src'] if img_elem else "Image source not available"
-            # print(img_src,'\n')
-            # print("Date:", date)
-            # print("Title:", title)
-            # print("Image Source:", img_src)
-            # print()
-            file.write("Date: {}\n".format(date))
-            file.write("\n")
-            file.write("Title: {}\n".format(title))
-            file.write("\n")
-            file.write("Image Source: {}\n".format(img_src))
-            file.write("\n")
-            file.write("Full Post: {}\n".format(full_Post_href))
-            file.write("\n")
-            file.write("User Input: {}\n".format(u_input))
-            file.write("\n")
-            file.write("Interpreter Response: {}\n".format(Response))
-            file.write("\n")
-            # driver.back()
+                file.write("Date: {}\n".format(date))
+                file.write("\n")
+                file.write("Title: {}\n".format(title))
+                file.write("\n")
+                file.write("Image Source: {}\n".format(img_src)) # if not required then remove it bcz i have created img url separate file
+                file.write("\n")
+                file.write("Full Post: {}\n".format(full_Post_href))
+                file.write("\n")
+                file.write("User Input: {}\n".format(u_input))
+                file.write("\n")
+                file.write("Interpreter Response: {}\n".format(Response))
+                file.write("\n")
+                driver.back()
 
 
     user_input = input("Type 'off' to exit: ")
