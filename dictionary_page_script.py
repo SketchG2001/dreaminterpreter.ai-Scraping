@@ -79,6 +79,8 @@ while not exit_loop:
                                     heading_tag = dict_def_div.find('h1')
                                     if heading_tag:
                                         heading_text = heading_tag.text.strip()
+                                        #print(heading_text) # this is the main heading of the word
+                                        # sys.exit()
                                         output_file.write(heading_text + "\n")
                                     second_div = dict_def_div.find('div')
                                     if second_div:
@@ -92,6 +94,8 @@ while not exit_loop:
                                                     # https: // dreaminterpreter.ai / dream - dictionary / a
                                                     subheading_word_href = subheading_anchor.get('href')
                                                     word_definition_url = 'https://dreaminterpreter.ai'+subheading_word_href
+                                                    # print(word_definition_url)
+                                                    # sys.exit()
                                                     driver.get(word_definition_url)
                                                     wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body")))
                                                     wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div[3]/div/div')))
@@ -99,40 +103,72 @@ while not exit_loop:
                                                     definiton_soup = BeautifulSoup(definiton_page_html, 'html.parser')
                                                     # print(definiton_soup.prettify())
                                                     word_definition = definiton_soup.find('div', class_='Dictionary_definition_container__zX89x')
-                                                    if word_definition:
-                                                        word = word_definition.find('h1').text.strip()
-                                                        print(word)
-                                                        def_paragraph = word_definition.find('p').text.strip()
-                                                        # print(def_paragraph)
+                                                    with open("dream_info.txt", "a",encoding='utf-8') as dream_info_file:
+                                                        with open("img_src.txt", "a", encoding='utf-8') as img_src_file:
+                                                            if word_definition:
+                                                                word = word_definition.find('h1').text.strip()
+                                                                print(word)
+                                                                sys.exit()
+                                                                def_paragraph = word_definition.find('p').text.strip()
+                                                                # print(def_paragraph)
 
-                                                    all_div = definiton_soup.find_all('div')
-                                                    related_dream_div = all_div[-8]
-                                                    # print(related_dream_div.prettify())
-                                                    if related_dream_div:
-                                                        dream_heading = related_dream_div.find('ul')
-                                                        if dream_heading:
-                                                            heading_releated = dream_heading.find('h1').text.strip()
-                                                            dreams_list = dream_heading.find('li')
-                                                            if dreams_list:
-                                                                dreams_anchor = dreams_list.find('a')
-                                                                if dreams_anchor:
-                                                                    dream_href = dreams_anchor.get('href')
-                                                                    img_title_div = dreams_anchor.find('div', class_='Art_dream_card_container__iLV+l')
-                                                                    if img_title_div:
-                                                                        title_div = img_title_div.find('div', class_='Art_dream__NXDhj')
+                                                            all_div = definiton_soup.find_all('div')
+                                                            related_dream_div = all_div[-8]
+                                                            # print(related_dream_div.prettify())
+                                                            # sys.exit()
+                                                            if related_dream_div:
+                                                                dream_heading = related_dream_div.find('ul')
+                                                                if dream_heading:
+                                                                    heading_releated = dream_heading.find('h1').text.strip()
+                                                                    dreams_list = dream_heading.find('li')
+                                                                    if dreams_list:
+                                                                        # extract krna hai ye anchor tag abhi
+                                                                        dreams_anchor = dreams_list.find('a')
+                                                                        if dreams_anchor:
+                                                                            # https://dreaminterpreter.ai/dream-dictionary/definition/a
+                                                                            # releated_dream_href
+                                                                            dream_href = 'https://dreaminterpreter.ai'+dreams_anchor.get('href')
+                                                                            # print(dream_href)
+                                                                            # sys.exit() #idhar se start krna hai
+                                                                            img_title_div = dreams_anchor.find('div', class_='Art_dream_card_container__iLV+l')
+                                                                            if img_title_div:
+                                                                                title_div = img_title_div.find('div', class_='Art_dream__NXDhj')
+                                                                                if title_div:
+                                                                                    title_text = title_div.text.strip()
+                                                                                    # print("Title:", title_text)
+                                                                                    # sys.exit()
+                                                                                img_tag = img_title_div.find('img')
+                                                                                if img_tag:
+                                                                                    img_href = img_tag.get('src')
+                                                                                    # img_src_file.write(f'related image: {img_href}' + "\n")
+                                                                            final_date_div = dreams_anchor.find('div',class_='Art_date__JKl3V').text.strip()
+                                                                            if final_date_div:
+                                                                                date_obj = datetime.strptime(final_date_div,'%m/%d/%Y')
 
-                                                                        if title_div:
+                                                                                driver.get(dream_href)
+                                                                                wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body")))
+                                                                                wait = WebDriverWait(driver, 10)
+                                                                                wait.until(
+                                                                                    EC.presence_of_element_located(( By.CLASS_NAME,'Interpreter_dream_card_container__NWBLD')))
+                                                                                related_dream_html = driver.page_source
+                                                                                related_dream_soup = BeautifulSoup(related_dream_html, 'html.parser')
+                                                                                head_para = related_dream_soup.find('p', class_='Interpreter_dream__Nd9f0').text.strip()
+                                                                                # print(head_para)
+                                                                                dream_para = related_dream_soup.find('p',class_='Interpreter_interpretation__B-MVR').text.strip()
 
-                                                                            title_text = title_div.text.strip()
-                                                                            print("Title:", title_text)
-                                                                        img_tag = img_title_div.find('img')
-                                                                        if img_tag:
-                                                                            img_href = img_tag.get('src')
-                                                                    final_date_div = dreams_anchor.find('div',class_='Art_date__JKl3V').text.strip()
-                                                                    if final_date_div:
-                                                                        date_obj = datetime.strptime(final_date_div,'%m/%d/%Y')
-                                                                        formatted_date = date_obj.strftime('%d/%m/%Y')
-                                                    sys.exit()
+
+
+                                                                                sys.exit()
+
+
+
+                                                                                # dream date
+                                                                                formatted_date = date_obj.strftime('%d/%m/%Y')
+                                                                                dream_info_file.write(formatted_date + "\n")
+                                                                                dream_info_file.write(f'Heading {word}' + "\n")
+                                                                                dream_info_file.write(f'Releated Dream: {dream_href}' + "\n")
+                                                                                dream_info_file.write(f'title: {title_text}' + "\n")
+                                                                                dream_info_file.write(f'definition:\n{def_paragraph}' + "\n")
 
                                                     output_file.write(subheading + "\n")
                                                     hrefs_file.write(f'{count}: {word_definition_url}' + "\n")
@@ -140,7 +176,7 @@ while not exit_loop:
                                                 output_file.write(paragraph + "\n")
 
 
-                        # if count == 1:
+                        # if count == 10:
                         #     break
 
 
@@ -152,7 +188,7 @@ while not exit_loop:
                         time.sleep(1)
                 else:
                     print(f"Maximum retry attempts reached for link: {complete_link}. Moving to the next link.")
-            # if count == 1:
+            # if count == 10:
             #     break
 
 
